@@ -1,8 +1,8 @@
 (function attachSecretBrushLegal(global) {
   "use strict";
 
-  const UPDATED = "17 July 2026";
-  const UPDATED_TR = "17 Temmuz 2026";
+  const UPDATED = "19 July 2026";
+  const UPDATED_TR = "19 Temmuz 2026";
   const APPLE_EULA = "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/";
 
   const documents = {
@@ -24,10 +24,10 @@
           {
             title: "2. Information used on your device",
             bullets: [
-              "Preferences: selected language and game settings.",
+              "Preferences: selected language, game settings, and the local-multiplayer nickname and preferred color you choose to reuse on this device.",
               "Single-device game data: player nicknames, colors, scores, round state, virtual coins/paint inventory, and drawings needed to continue or show the game.",
-              "Local-multiplayer session data: room code, player identifier, and a random session token used to reconnect to the current room.",
-              "The room password is used in memory to authenticate and establish encryption. The app does not intentionally save the room password to persistent storage."
+              "Local-multiplayer session data: a random internal game identifier, player identifier, and random session token used to reconnect to the current game. The internal identifier supports discovery and routing; it is not a secret or a credential.",
+              "The game password is used in memory to authenticate and establish encryption. The app does not intentionally save the game password to persistent storage."
             ],
             paragraphs: [
               "This information remains in the app’s storage or volatile memory on the relevant device. The Developer cannot remotely view, retrieve, correct, or delete it."
@@ -36,18 +36,18 @@
           {
             title: "3. Information shared with nearby players",
             paragraphs: [
-              "When you choose Local Multiplayer, devices you invite on the same local network exchange the information required to play: player and room names, room code, roles, category, secret word or clue as appropriate, drawing strokes, colors, votes, scores, virtual items, connection status, and session credentials. The host device temporarily holds the authoritative room state. Other devices receive only the game state needed for their player and the shared canvas."
+              "When you choose Local Multiplayer, devices participating in the password-protected game on the same local network exchange the information required to play: player nicknames, a random internal game identifier, roles, category, secret word or clue as appropriate, drawing strokes, colors, votes, scores, virtual items, connection status, and session credentials. The host device temporarily holds the authoritative game state. Other devices receive only the game state needed for their player and the shared canvas."
             ],
             bullets: [
-              "Bonjour discovery advertises the app’s service type, a random service/host identifier, the room code, and protocol version. The room name and room password are not advertised through Bonjour.",
-              "Local Multiplayer uses an encrypted, password-protected connection. Use a unique room password of at least eight characters and share it only with intended players.",
+              "The app-defined Bonjour TXT record contains the protocol version, a random host identifier, and a random internal game identifier. Bonjour/DNS-SD also exposes the service type/name and connection endpoint needed for discovery; the service name is derived from the random internal game identifier. Nearby devices on the same local network can see that a compatible game is available. The game password, player names, drawings, and other gameplay content are not placed in the app-defined discovery metadata.",
+              "Local Multiplayer uses an encrypted, password-protected connection. Discovering a nearby game does not grant access: joining requires the correct game password over the encrypted link. Use a unique password of at least eight characters and share it only with intended players.",
               "Nearby players can see content you intentionally submit to the room. Do not use real names or draw, type, or share personal, confidential, illegal, or harmful information."
             ]
           },
           {
             title: "4. Local Network permission",
             paragraphs: [
-              "iOS asks for Local Network permission so the app can discover and connect to a nearby host using Bonjour and Network.framework. If you deny it, Local Multiplayer will not work; Play on One Device remains available. The app does not request access to your camera, microphone, precise location, photos, contacts, or advertising identifier for its current features."
+              "iOS asks for Local Network permission so the app can find, host, and join password-protected games with nearby players using Bonjour and Network.framework. If you deny it, Local Multiplayer will not work; Play on One Device remains available. The app does not request access to your camera, microphone, precise location, photos, contacts, or advertising identifier for its current features."
             ]
           },
           {
@@ -86,7 +86,7 @@
           {
             title: "9. Security and your choices",
             paragraphs: [
-              "Use a trusted, password-protected local network; choose a unique room password; share the room code and password through separate trusted channels; keep iOS and the app updated; and leave a room if you do not trust a participant. The host can clear the shared canvas and remove a participant. No technical measure can make a network or device completely risk-free, and a participant can still photograph or otherwise record what appears on their own screen."
+              "Use a trusted, password-protected local network; choose a unique game password and share only that password with intended players through a trusted channel; keep iOS and the app updated; and leave a game if you do not trust a participant. A nearby malicious device may advertise a look-alike game; the password-authenticated connection prevents access without the password but does not provide account- or certificate-based host identity verification. The host can clear the shared canvas and remove a participant. No technical measure can make a network or device completely risk-free, and a participant can still photograph or otherwise record what appears on their own screen."
             ]
           },
           {
@@ -153,7 +153,7 @@
             title: "5. Player content and room moderation",
             paragraphs: [
               "You retain any rights you have in names and drawings you create. You give the other devices in your chosen room a temporary permission to receive, display, and process that content only to run the session. The Developer does not receive or host current gameplay content and cannot retrospectively inspect or recover it.",
-              "The room host can clear the canvas and remove a participant. Participants may leave at any time. Use these controls for inappropriate content or behaviour. A removal blocks that session from continuing in the current room, but it cannot prevent a person with a new invitation from attempting to join a later room."
+              "The game host can clear the canvas and remove a participant. Participants may leave at any time. Use these controls for inappropriate content or behaviour. A removal blocks that session from continuing in the current game, but it cannot permanently prevent someone who obtains the password for a later game from attempting to join."
             ]
           },
           {
@@ -219,10 +219,10 @@
           {
             title: "2. Cihazınızda kullanılan bilgiler",
             bullets: [
-              "Tercihler: seçilen dil ve oyun ayarları.",
+              "Tercihler: seçilen dil, oyun ayarları ve bu cihazda yeniden kullanmayı seçtiğiniz yerel multiplayer takma adı ile tercih edilen renk.",
               "Tek cihaz oyun verisi: oyuncu takma adları, renkler, puanlar, tur durumu, sanal altın/boya envanteri ve oyunu sürdürmek veya göstermek için gereken çizimler.",
-              "Yerel multiplayer oturumu: mevcut odaya yeniden bağlanmak için oda kodu, oyuncu kimliği ve rastgele oturum anahtarı.",
-              "Oda şifresi, kimlik doğrulamak ve şifrelemeyi kurmak için bellekte kullanılır; uygulama şifreyi bilerek kalıcı depolamaya kaydetmez."
+              "Yerel multiplayer oturumu: mevcut oyuna yeniden bağlanmak için rastgele dahili oyun kimliği, oyuncu kimliği ve rastgele oturum belirteci. Dahili kimlik keşif ve yönlendirme içindir; gizli bilgi veya kimlik doğrulama bilgisi değildir.",
+              "Oyun şifresi, kimlik doğrulamak ve şifrelemeyi kurmak için bellekte kullanılır; uygulama şifreyi bilerek kalıcı depolamaya kaydetmez."
             ],
             paragraphs: [
               "Bu bilgiler ilgili cihazın uygulama deposunda veya geçici belleğinde kalır. Geliştirici bunları uzaktan göremez, alamaz, düzeltemez veya silemez."
@@ -231,18 +231,18 @@
           {
             title: "3. Yakındaki oyuncularla paylaşılan bilgiler",
             paragraphs: [
-              "Yerel Multiplayer seçildiğinde aynı yerel ağdaki davet ettiğiniz cihazlar; oyuncu ve oda adları, oda kodu, rol, kategori, oyuncuya göre gizli kelime veya ipucu, çizgi verileri, renkler, oylar, puanlar, sanal öğeler, bağlantı durumu ve oturum kimlik bilgileri gibi oyun için gerekli verileri paylaşır. Host cihazı, oda durumunu geçici olarak yönetir. Diğer cihazlar yalnızca kendi oyuncuları ve ortak tuval için gereken durumu alır."
+              "Yerel Multiplayer seçildiğinde aynı yerel ağdaki şifre korumalı oyuna katılan cihazlar; oyuncu takma adları, rastgele dahili oyun kimliği, rol, kategori, oyuncuya göre gizli kelime veya ipucu, çizgi verileri, renkler, oylar, puanlar, sanal öğeler, bağlantı durumu ve oturum kimlik bilgileri gibi oyun için gerekli verileri paylaşır. Host cihazı, oyun durumunu geçici olarak yönetir. Diğer cihazlar yalnızca kendi oyuncuları ve ortak tuval için gereken durumu alır."
             ],
             bullets: [
-              "Bonjour keşfi; uygulamanın servis türünü, rastgele servis/host kimliğini, oda kodunu ve protokol sürümünü yayınlar. Oda adı ve şifresi Bonjour ile yayınlanmaz.",
-              "Yerel Multiplayer, şifreli ve parola korumalı bir bağlantı kullanır. En az sekiz karakterli, benzersiz bir oda şifresi seçin ve yalnızca davet ettiğiniz oyuncularla paylaşın.",
+              "Uygulamanın tanımladığı Bonjour TXT kaydı protokol sürümünü, rastgele host kimliğini ve rastgele dahili oyun kimliğini içerir. Bonjour/DNS-SD ayrıca keşif için gereken servis türünü/adını ve bağlantı uç noktasını gösterir; servis adı bu rastgele dahili oyun kimliğinden türetilir. Aynı yerel ağdaki yakındaki cihazlar uyumlu bir oyunun açık olduğunu görebilir. Oyun şifresi, oyuncu adları, çizimler ve diğer oyun içeriği uygulamanın tanımladığı keşif meta verisine konmaz.",
+              "Yerel Multiplayer, şifreli ve parola korumalı bir bağlantı kullanır. Yakındaki oyunu keşfetmek erişim sağlamaz; katılmak için şifreli bağlantı üzerinden doğru oyun şifresi gerekir. En az sekiz karakterli, benzersiz bir şifre seçin ve yalnızca katılmasını istediğiniz oyuncularla paylaşın.",
               "Odaya bilerek gönderdiğiniz içerik yakındaki oyuncularca görülebilir. Gerçek ad kullanmayın; kişisel, gizli, hukuka aykırı veya zararlı bilgi çizmeyin, yazmayın ya da paylaşmayın."
             ]
           },
           {
             title: "4. Yerel Ağ izni",
             paragraphs: [
-              "iOS, uygulamanın Bonjour ve Network.framework ile yakındaki hostu bulup bağlanabilmesi için Yerel Ağ izni ister. Reddederseniz Yerel Multiplayer çalışmaz; Tek Cihazda Oyna kullanılabilir. Uygulama mevcut özellikleri için kamera, mikrofon, hassas konum, fotoğraflar, kişiler veya reklam kimliği erişimi istemez."
+              "iOS, uygulamanın Bonjour ve Network.framework ile yakındaki oyuncularla şifre korumalı oyunları bulabilmesi, kurabilmesi ve bu oyunlara katılabilmesi için Yerel Ağ izni ister. Reddederseniz Yerel Multiplayer çalışmaz; Tek Cihazda Oyna kullanılabilir. Uygulama mevcut özellikleri için kamera, mikrofon, hassas konum, fotoğraflar, kişiler veya reklam kimliği erişimi istemez."
             ]
           },
           {
@@ -274,14 +274,14 @@
             bullets: [
               "Hosttaki geçici oda durumu, hostluk durduğunda veya host uygulaması kapandığında sona ermek üzere tasarlanmıştır.",
               "Kaydedilen tercihler ve tek cihaz ilerlemesi; oyunu sıfırlayana, iOS izin veriyorsa uygulama verisini temizleyene veya uygulamayı kaldırana kadar kalır.",
-              "Yerel oda oturum anahtarı; oturum temizlenene, odadan çıkarılana veya uygulama kaldırılana kadar kalabilir; host oda artık tanımıyorsa geçersizdir.",
+              "Yerel oyun oturum belirteci; oturum temizlenene, oyundan çıkarılana veya uygulama kaldırılana kadar kalabilir; host oyunu artık tanımıyorsa geçersizdir.",
               "Destek mesajı yalnızca yanıt, uygulama güvenliği, hukuki talepler veya yasal yükümlülükler için makul ölçüde gerekli süre tutulur."
             ]
           },
           {
             title: "9. Güvenlik ve seçimleriniz",
             paragraphs: [
-              "Güvendiğiniz, şifreli bir yerel ağ kullanın; benzersiz oda şifresi seçin; oda kodu ile şifreyi güvenilir ve mümkünse ayrı kanallardan paylaşın; iOS ile uygulamayı güncel tutun; katılımcıya güvenmiyorsanız odadan ayrılın. Host tuvali temizleyebilir ve oyuncuyu çıkarabilir. Hiçbir teknik önlem ağı veya cihazı tamamen risksiz yapamaz; katılımcı kendi ekranını fotoğraflayabilir veya kaydedebilir."
+              "Güvendiğiniz, şifreli bir yerel ağ kullanın; benzersiz oyun şifresi seçin ve yalnızca katılmasını istediğiniz oyuncularla güvenilir bir kanaldan paylaşın; iOS ile uygulamayı güncel tutun; katılımcıya güvenmiyorsanız oyundan ayrılın. Yakındaki kötü niyetli bir cihaz benzer görünen bir oyun yayınlayabilir; parola doğrulamalı bağlantı şifreyi bilmeyenin erişimini engeller ancak hesap veya sertifikaya dayalı host kimliği doğrulaması sağlamaz. Host tuvali temizleyebilir ve oyuncuyu çıkarabilir. Hiçbir teknik önlem ağı veya cihazı tamamen risksiz yapamaz; katılımcı kendi ekranını fotoğraflayabilir veya kaydedebilir."
             ]
           },
           {
@@ -348,7 +348,7 @@
             title: "5. Oyuncu içeriği ve oda yönetimi",
             paragraphs: [
               "Oluşturduğunuz ad ve çizimler üzerindeki haklarınız sizde kalır. Seçtiğiniz odadaki diğer cihazlara, yalnızca oturumu yürütmek için içeriği geçici olarak alma, gösterme ve işleme izni verirsiniz. Geliştirici mevcut oyun içeriğini almaz/barındırmaz; sonradan inceleyemez veya kurtaramaz.",
-              "Host tuvali temizleyebilir ve katılımcıyı çıkarabilir; herkes istediği zaman ayrılabilir. Uygunsuz içerik veya davranışta bu kontrolleri kullanın. Çıkarma, ilgili oturumun mevcut odada devam etmesini engeller; yeni davet alan kişinin sonraki bir odaya katılma denemesini kalıcı olarak engellemez."
+              "Host tuvali temizleyebilir ve katılımcıyı çıkarabilir; herkes istediği zaman ayrılabilir. Uygunsuz içerik veya davranışta bu kontrolleri kullanın. Çıkarma, ilgili oturumun mevcut oyunda devam etmesini engeller; sonraki bir oyunun şifresini edinen kişinin katılma denemesini kalıcı olarak engellemez."
             ]
           },
           {
@@ -407,6 +407,6 @@
   global.SecretBrushLegal = Object.freeze({
     get,
     supportedTypes: Object.freeze(["privacy", "terms"]),
-    lastUpdated: "2026-07-17"
+    lastUpdated: "2026-07-19"
   });
 })(typeof window !== "undefined" ? window : globalThis);

@@ -8,7 +8,7 @@
 
 ### Kullanım Koşulları
 
-_Yürürlük ve son güncelleme: 17 Temmuz 2026_
+_Yürürlük ve son güncelleme: 19 Temmuz 2026_
 
 Bu ek kurallar Gizli Fırça kullanımınıza uygulanır. iOS uygulama lisansınız ayrıca Apple Standart Lisanslı Uygulama Son Kullanıcı Lisans Sözleşmesine (“Apple Standart EULA”) tabidir. Buradaki hiçbir hüküm emredici tüketici veya gizlilik haklarını sınırlandırmaz.
 
@@ -36,7 +36,7 @@ Apple Standart EULA ve bu kurallara tabi olarak, Apple’ın izin verdiği biçi
 
 Oluşturduğunuz ad ve çizimler üzerindeki haklarınız sizde kalır. Seçtiğiniz odadaki diğer cihazlara, yalnızca oturumu yürütmek için içeriği geçici olarak alma, gösterme ve işleme izni verirsiniz. Geliştirici mevcut oyun içeriğini almaz/barındırmaz; sonradan inceleyemez veya kurtaramaz.
 
-Host tuvali temizleyebilir ve katılımcıyı çıkarabilir; herkes istediği zaman ayrılabilir. Uygunsuz içerik veya davranışta bu kontrolleri kullanın. Çıkarma, ilgili oturumun mevcut odada devam etmesini engeller; yeni davet alan kişinin sonraki bir odaya katılma denemesini kalıcı olarak engellemez.
+Host tuvali temizleyebilir ve katılımcıyı çıkarabilir; herkes istediği zaman ayrılabilir. Uygunsuz içerik veya davranışta bu kontrolleri kullanın. Çıkarma, ilgili oturumun mevcut oyunda devam etmesini engeller; sonraki bir oyunun şifresini edinen kişinin katılma denemesini kalıcı olarak engellemez.
 
 #### 6. Yerel ağ sorumluluğu
 
@@ -72,7 +72,7 @@ Bir hüküm uygulanamazsa kalan hükümler hukukun izin verdiği ölçüde yür�
 
 ### Terms of Use
 
-_Effective and last updated: 17 July 2026_
+_Effective and last updated: 19 July 2026_
 
 These supplemental rules apply to your use of Secret Brush. Your licence to the iOS app is also governed by Apple’s Standard Licensed Application End User License Agreement (“Apple Standard EULA”). Nothing here limits mandatory consumer or privacy rights.
 
@@ -100,7 +100,7 @@ Subject to the Apple Standard EULA and these rules, you receive a personal, limi
 
 You retain any rights you have in names and drawings you create. You give the other devices in your chosen room a temporary permission to receive, display, and process that content only to run the session. The Developer does not receive or host current gameplay content and cannot retrospectively inspect or recover it.
 
-The room host can clear the canvas and remove a participant. Participants may leave at any time. Use these controls for inappropriate content or behaviour. A removal blocks that session from continuing in the current room, but it cannot prevent a person with a new invitation from attempting to join a later room.
+The game host can clear the canvas and remove a participant. Participants may leave at any time. Use these controls for inappropriate content or behaviour. A removal blocks that session from continuing in the current game, but it cannot permanently prevent someone who obtains the password for a later game from attempting to join.
 
 #### 6. Local-network responsibility
 
