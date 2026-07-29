@@ -62,15 +62,25 @@ footer { color: var(--muted); }
 }
 
 .languages a[aria-current="page"],
-.document-links a:hover {
+.document-links a:hover,
+.support-button:hover {
   background: var(--gold);
   border-color: var(--gold);
   color: var(--background);
   font-weight: 800;
 }
 
-article,
-.home-card {
+.support-button {
+  display: inline-block;
+  margin-top: 4px;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  color: var(--text);
+  padding: 10px 17px;
+  text-decoration: none;
+}
+
+article,.home-card {
   margin-top: 26px;
   background: color-mix(in srgb, var(--panel) 94%, transparent);
   border: 1px solid var(--line);
@@ -85,6 +95,12 @@ section {
   border-top: 1px solid var(--line);
   margin-top: 28px;
   padding-top: 20px;
+}
+
+.support-section:first-child {
+  border-top: 0;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 h2 { margin: 0 0 10px; font-size: 1.35rem; }
